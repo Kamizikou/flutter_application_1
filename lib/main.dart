@@ -1,211 +1,297 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const CampusHubApp());
+  runApp(const TasteTroveApp());
 }
 
-class CampusHubApp extends StatelessWidget {
-  const CampusHubApp({super.key});
+class TasteTroveApp extends StatelessWidget {
+  const TasteTroveApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NTC Campus Hub',
+      title: 'TasteTrove',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF0D2C6C), // Navy Blue
-          secondary: const Color(0xFFF37021), // Orange Accent
-        ),
+        scaffoldBackgroundColor: const Color(0xFFF8F9FA),
         useMaterial3: true,
       ),
-      home: const StudentDashboardScreen(),
+      home: const TasteTroveHomeScreen(),
     );
   }
 }
 
-class StudentDashboardScreen extends StatelessWidget {
-  const StudentDashboardScreen({super.key});
+class TasteTroveHomeScreen extends StatelessWidget {
+  const TasteTroveHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0D2C6C),
-        foregroundColor: Colors.white,
-        title: const Text(
-          'Mobile Dev Week13', // Change this text to demonstrate Hot Reload
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.notifications_none),
-          ),
-        ],
-      ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF0D2C6C),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome back, Caday!',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 6),
-                    Text(
-                      'BS Information Technology • 3rd Year',
-                      style: TextStyle(color: Colors.white70, fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              // Section Header
-              const Text(
-                'Quick Summary',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0D2C6C),
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              // Horizontal Stats Row
+              // Top App Bar: Logo + Search Bar + Messages Icon
               Row(
                 children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFF8E7),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: const Color(0xFFC59B43)),
+                    ),
+                    child: const Icon(
+                      Icons.restaurant_menu,
+                      color: Color(0xFFC59B43),
+                      size: 24,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.blue.shade100),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
                       ),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEEEEEE),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Row(
                         children: [
-                          Icon(Icons.book, color: Color(0xFF0D2C6C)),
-                          SizedBox(height: 8),
+                          Icon(Icons.search, size: 18, color: Colors.black54),
+                          SizedBox(width: 8),
                           Text(
-                            '6 Subjects',
+                            'Find New Gourmet',
                             style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            'Enrolled AY 26-27',
-                            style: TextStyle(
-                              fontSize: 12,
                               color: Colors.black54,
+                              fontSize: 13,
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.orange.shade50,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.orange.shade200),
-                      ),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.assignment_turned_in,
-                            color: Color(0xFFF37021),
-                          ),
-                          SizedBox(height: 8),
-                          Text(
-                            '2 Tasks Due',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            'PC16 Lab Activity',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ],
-                      ),
+                  const SizedBox(width: 10),
+                  const Icon(
+                    Icons.mail_outline,
+                    color: Color(0xFFC59B43),
+                    size: 28,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+
+              // Section Header
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'New Food to Explore!',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'See more >',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFFC59B43),
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
 
-              // Next Class Card
-              const Text(
-                'Today\'s Schedule',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF0D2C6C),
-                ),
+              // Row 1 of Recipe Cards
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Kinilaw',
+                      author: 'Joe Lingeman',
+                      bgColor: const Color(0xFFE8D8C8),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Beef Steak',
+                      author: 'Neal Santos',
+                      bgColor: const Color(0xFFD6E4F0),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 12),
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.grey.shade300),
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'PC16 - Mobile Development',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Lab Room 302 • 1:00 PM - 4:00 PM',
-                          style: TextStyle(fontSize: 13, color: Colors.black54),
-                        ),
-                      ],
+
+              // Row 2 of Recipe Cards
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Lumpiang Shanghai',
+                      author: 'Christopher Testani',
+                      bgColor: const Color(0xFFF5E6CC),
                     ),
-                    Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Kare-Kare',
+                      author: 'Erik Bernstien',
+                      bgColor: const Color(0xFFF3D5B5),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+
+              // Row 3 of Recipe Cards
+              Row(
+                children: [
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Chicken Adobo',
+                      author: 'Maria Do',
+                      bgColor: const Color(0xFFE5D1B8),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: _buildRecipeCard(
+                      dishName: 'Lechon Kawali',
+                      author: 'Rachel Cook',
+                      bgColor: const Color(0xFFF0DFC8),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
+      ),
+
+      // Bottom Navigation Bar matching Figma
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          border: Border(top: BorderSide(color: Color(0xFFE0E0E0))),
+        ),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.home, color: Colors.black87),
+                Text('Home', style: TextStyle(fontSize: 11)),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.notifications, color: Colors.black54),
+                Text('Notification', style: TextStyle(fontSize: 11)),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.bookmark, color: Colors.black54),
+                Text('Saved', style: TextStyle(fontSize: 11)),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.person, color: Colors.black54),
+                Text('Profile', style: TextStyle(fontSize: 11)),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static Widget _buildRecipeCard({
+    required String dishName,
+    required String author,
+    required Color bgColor,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: const Color(0xFFE0E0E0)),
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 135,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: bgColor,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(13),
+              ),
+            ),
+            child: const Center(
+              child: Icon(
+                Icons.ramen_dining,
+                size: 48,
+                color: Color(0xFF7A5C38),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(
+                  dishName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.account_circle_outlined,
+                      size: 16,
+                      color: Colors.black54,
+                    ),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        author,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+                    const Icon(
+                      Icons.restaurant,
+                      size: 15,
+                      color: Color(0xFFC59B43),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
